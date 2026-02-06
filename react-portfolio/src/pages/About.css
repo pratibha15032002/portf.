@@ -1,0 +1,208 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+:root {
+  --bg-color: #06061a;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --accent-color: #dbff4d;
+  --secondary-glow: #6e45e2;
+  --text-white: #ffffff;
+  --text-muted: #cfcfe6;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(circle at top right, #161635, #06061a);
+  color: var(--text-white);
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Background Glow Effect */
+body::before {
+  content: "";
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: var(--secondary-glow);
+  filter: blur(180px);
+  opacity: 0.12;
+  top: -10%;
+  left: -10%;
+  z-index: -1;
+  pointer-events: none;
+  animation: bgFloat 25s infinite alternate ease-in-out;
+}
+
+@keyframes bgFloat {
+  to { transform: translate(100%, 50%); }
+}
+
+/* Container */
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 1. Hero Header (Top) */
+.hero-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.hero-name {
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  font-weight: 800;
+  background: linear-gradient(180deg, var(--accent-color), #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  letter-spacing: 8px;
+  color: var(--accent-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+/* 2. Intro Section (Middle) */
+.intro-section {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 40px;
+  padding: 60px;
+  border: var(--glass-border);
+  border-left: 6px solid var(--accent-color);
+  max-width: 900px;
+  margin-bottom: 100px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+}
+
+.intro-section p {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.projects-label {
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 15px !important;
+  font-size: 1rem !important;
+}
+
+.project-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+}
+
+.project-pills li {
+  padding: 8px 20px;
+  border-radius: 50px;
+  background: rgba(219, 255, 77, 0.05);
+  border: 1px solid rgba(219, 255, 77, 0.2);
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.project-pills li:hover {
+  background: var(--accent-color);
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* 3. Skills Grid (Bottom) */
+.skills-section {
+  width: 100%;
+}
+
+.skills-title {
+  text-align: center;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  margin-bottom: 60px;
+  font-weight: 800;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+.skill-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 40px 20px;
+  text-align: center;
+  border: var(--glass-border);
+  transition: var(--transition);
+}
+
+.skill-card:hover {
+  transform: translateY(-12px);
+  border-color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.icon-box {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.icon-box img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.skill-name {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Fixes */
+@media screen and (min-width: 1400px) {
+  .skills-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .hero-name { font-size: 4rem; }
+  .intro-section { padding: 35px 25px; border-radius: 25px; }
+  .skills-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .skill-card { padding: 25px 15px; }
+}
