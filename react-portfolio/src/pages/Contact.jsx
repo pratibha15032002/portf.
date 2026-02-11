@@ -22,11 +22,11 @@ const Contact = () => {
       if (data.success) {
         setShowAlert(true);
       } else {
-        alert("Kuch error hua: " + data.message);
+        alert("Somthing is error: " + data.message);
       }
     } catch (err) {
       console.error("Backend Error:", err);
-      alert("Server se connect nahi ho pa raha! Check if backend is running.");
+      alert("Server is Busy please wait And try Again.");
     } finally {
       setIsSubmitting(false); 
     }
